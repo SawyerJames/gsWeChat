@@ -48,6 +48,7 @@ export default {
       'pages/account/main',
       'pages/business/main',
       '^pages/bindUser/main',
+      'pages/blackPayment/main',
       'pages/center/main',
       'pages/closeApp/main',
       'pages/complaint/main',

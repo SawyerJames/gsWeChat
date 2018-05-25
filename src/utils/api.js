@@ -4,6 +4,8 @@ const API = {
   BootPage: 'way/user/getUserIsReg',
   // 用户信息
   getUserInfo: 'index/user/getUserInfo',
+  // 检测是否黑名单
+  checkBlackUser: 'index/user/checkBlackUser',
   // 最新通告
   getNotice: 'index/more/notice',
   getNoticeMsg: 'index/more/notice_details',
@@ -29,6 +31,9 @@ const API = {
   getPay: 'parking/Payment_Records/paymentData',
   getPayMsg: 'index/mini/minipay',
   payDetail: 'details/details/paymentDetails',
+  // 黑名单缴费明细
+  blackUserPayment: 'parking/Payment_Records/blackUserPayment',
+  getBlackPayMsg: '',
   // 唤起微信支付
   postMoney: 'order/wxpay/repayment',
   // 意见反馈&投诉申请：

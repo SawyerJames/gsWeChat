@@ -19,7 +19,7 @@ export default {
   position: fixed;
   width: 96rpx;
   height: 96rpx;
-  margin-left: -80rpx;
+  margin-left: -46rpx;
   left: 50%;
   top: 30%;
   z-index: 9999;

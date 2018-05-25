@@ -16,6 +16,7 @@
             </swiper-item>
           </swiper>
         </div>
+        <div v-else class="activityContent flexRow boxBorder">
           <img :src="imgUrl.activity">
           <p class="activity_none">暂无最新公告</p>
         </div>
@@ -40,7 +41,8 @@
             <!-- 已绑定其他信息 -->
             <div class="user_Flag_content flexCol">
               <span class="nick_name">{{userInfo.nickname}}</span>
-              <span class="car_number">车牌号：{{userInfo.car_number}}</span>
+              <span class="car_number" v-if="blackPayment">车牌号：您有订单未处理</span>
+              <span class="car_number" v-else>车牌号：{{userInfo.car_number}}</span>
               <!-- <span class="phone">电话：{{userInfo.phone}}</span> -->
             </div>
           </div>
@@ -86,11 +88,11 @@
         <span>智慧停车</span>
         <img :src="imgUrl.arrow" class="arrowIcon">
       </a>
-      <div @click="pay" class="tabBar_map_module flexRow" style="margin-bottom: 44rpx;">
+      <!-- <div @click="pay" class="tabBar_map_module flexRow" style="margin-bottom: 44rpx;">
         <img :src="imgUrl.tab_4" class="tabIcon">
         <span>创建订单</span>
         <img :src="imgUrl.arrow" class="arrowIcon">
-      </div>
+      </div> -->
     </div>
     <!-- 动态二维码 -->
     <div v-if="showScan">
@@ -113,6 +115,17 @@
       </div>
       <div class="tutoriaFooter flexRow">
         <span @click="tutoriaWinBtn">我知道了</span>
+      </div>
+    </div>
+    <!-- 黑名单弹窗 -->
+    <div v-show="blackPayment" class="non_payment flexRow">
+      <div class="paymen">
+        <div class="paymen_pic flexRow">
+          <img :src="imgUrl.blackUser">
+        </div>
+        <p class="paymen_p">您有订单未支付</p>
+        <p class="paymen_p">还款后为您继续开通平台功能。</p>
+        <div class="repayment" @click="go_non_payment">查看</div>
       </div>
     </div>
     <!-- 底部tapbar -->
@@ -146,6 +159,7 @@ import tab_4 from '@/assets/index/tab_4.png'
 import arrow from '@/assets/index/arrow.png'
 import footTabIndex_L from '@/assets/index/footTabIndex_L.png'
 import footTabCenter from '@/assets/index/footTabCenter.png'
+import blackUser from '@/assets/pay/blackUser.png'
 export default {
   name: "index",
   data() {
@@ -163,6 +177,7 @@ export default {
         tab_3,
         tab_4,
         arrow,
+        blackUser,
         footTabIndex_L,
         footTabCenter
       },
@@ -188,7 +203,9 @@ export default {
       userCheck: 0,
       userInfo: {},
       // 注册人数
-      registerNumber: 2000
+      registerNumber: 2000,
+      // 黑名单判断
+      blackPayment: false
     }
   },
   mounted() {
@@ -286,6 +303,8 @@ export default {
           clearTimeout(errLoading);
         }, 2000);
       });
+    // 判断是否为黑名单
+    this.blacklist();
   },
   methods: {
     // 跳转已开通业务
@@ -371,19 +390,39 @@ export default {
         url: '../center/main'
       })
     },
-    // 支付
-    pay() {
-      this.$http.get('order/index/test', null, {
+    // 创建伪造订单
+    // pay() {
+    //   this.$http.get('order/index/test', null, {
+    //       headers: {
+    //         'cookie': 'PHPSESSID=' + wx.getStorageSync('session_id')
+    //       }
+    //     })
+    //     .then(function(res) {
+    //       return;
+    //     })
+    // },
+    // 判断是否为黑名单
+    blacklist() {
+      let that = this;
+      this.$http.get(this.$api.checkBlackUser, null, {
           headers: {
             'cookie': 'PHPSESSID=' + wx.getStorageSync('session_id')
           }
         })
         .then(function(res) {
-          console.log("成功", res);
-        })
-        .catch(function(err) {
-          console.log(err);
+          // 接口获取成功
+          if (res.data.data.blackUser.status == 1) {
+            that.blackPayment = true;
+          } else {
+            that.blackPayment = false;
+          }
         });
+    },
+    //跳转黑名单列表
+    go_non_payment() {
+      wx.navigateTo({
+        url: '../blackPayment/main'
+      })
     }
   },
   components: {
@@ -841,5 +880,63 @@ export default {
   width: 54rpx;
   height: 54rpx;
   margin-bottom: 8rpx;
+}
+
+
+/*黑名单*/
+
+.non_payment {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+}
+
+.paymen {
+  width: 90%;
+  height: auto;
+  background: #eee;
+  border-radius: 10rpx;
+}
+
+.paymen_pic {
+  color: #fff;
+  font-size: 30rpx;
+  height: 160rpx;
+  border-radius: 10rpx 10rpx 0 0;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  background: url(../../assets/common/confirmBg.png) no-repeat;
+  background-size: 100%;
+}
+
+.paymen_pic img {
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.paymen_p {
+  text-align: center;
+  font-size: 28rpx;
+  margin-top: 24rpx;
+  color: #333;
+}
+
+.repayment {
+  width: 60%;
+  padding: 6rpx 0;
+  font-size: 28rpx;
+  margin: 24rpx auto;
+  text-align: center;
+  background: #f76149;
+  color: #fff;
+  border-radius: 10rpx;
+  letter-spacing: 4rpx;
 }
 </style>
