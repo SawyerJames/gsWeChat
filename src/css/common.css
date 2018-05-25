@@ -1,0 +1,260 @@
+  /*定制化css结构*/
+
+  select {
+    padding: 0 6.4rpx;
+  }
+
+  input {
+    padding: 0 16rpx;
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+    line-height: normal;
+  }
+  /*提示信息类*/
+
+  .sign {
+    font-size: 24rpx;
+    color: #666666;
+    margin: 32rpx 0;
+  }
+  /*无边框*/
+
+  .noBorder {
+    border: none !important;
+  }
+  /*遮罩层*/
+
+  .mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 999;
+  }
+  /*验证*/
+
+  .validate {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64rpx;
+    background: #DD1919;
+    z-index: 111;
+    color: #fff;
+    line-height: 64rpx;
+    text-align: center;
+    font-size: 28rpx;
+  }
+  /*错误提示认证*/
+
+  .maskError {
+    z-index: 9998;
+  }
+
+  .errorWin {
+    color: #fff;
+    position: fixed;
+    width: 320rpx;
+    height: 160rpx;
+    background: none;
+    margin-left: -160rpx;
+    left: 50%;
+    top: 30%;
+    border-radius: 16rpx;
+    font-size: 28rpx;
+    z-index: 9999;
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    justify-content: space-around;
+    -ms-align-items: center;
+    align-items: center;
+  }
+
+  .errorWin img {
+    width: 96rpx;
+    height: 96rpx;
+  }
+  /*boxSizing 可继承类*/
+
+  .borderBox {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  /*flex组 可继承类*/
+
+  .flexRow {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .flexCol {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .flexWrap {
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .flex_1 {
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    -o-flex: 1;
+    flex: 1;
+  }
+  /*通用按钮类 可继承类 只定义基本样式，宽度不定义*/
+
+  .btn {
+    background: #3591cf;
+    border: none;
+    outline: none;
+    border-radius: .64rpx;
+    color: #fff;
+    height: 80rpx;
+    margin: 32rpx auto;
+  }
+  /*弹窗样式*/
+
+  .confirmWinContnt {
+    width: 70%;
+    height: auto;
+    margin-left: -35%;
+    background: #fff;
+    border-radius: 8rpx;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    z-index: 999;
+  }
+  /*弹窗头部*/
+
+  .confirmWin_Top {
+    height: 160rpx;
+    width: 100%;
+    background: url(../assets/common/confirmBg.png);
+    background-size: contain;
+    border-radius: 8rpx 8rpx 0 0;
+    justify-content: center;
+    -ms-align-items: center;
+    align-items: center;
+  }
+
+  .confirmTopImg {
+    width: 64rpx;
+    height: 64rpx;
+    margin-bottom: 16rpx;
+  }
+
+  .confirmTitle {
+    font-size: 28rpx;
+    color: #fff;
+  }
+  /*弹窗中部*/
+
+  .confirmWin_middle {
+    height: auto;
+    width: 100%;
+    padding: 16rpx 0;
+    font-size: 28rpx;
+    background: #fff;
+    justify-content: center;
+    -ms-align-items: center;
+    align-items: center;
+  }
+
+  .confirmMsg {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .confirmMsg p{
+    color: #F8624A;
+    margin: 4rpx 0;
+    font-size: 28rpx;
+    text-decoration: none;
+  }
+  /*弹窗尾部*/
+
+  .confirmWin_footer {
+    width: 100%;
+    height: 96rpx;
+    font-size: 28rpx;
+    border-top: 2rpx solid #ddd;
+    border-radius: 0 0 8rpx 8rpx;
+    justify-content: space-around;
+    -ms-align-items: center;
+    align-items: center;
+  }
+
+  .confirm_cel {
+    color: #999;
+  }
+
+  .confirm_sub {
+    color: #F8624A;
+  }
+  /*文本类通用样式*/
+
+  .txtContainer {
+    height: 100%;
+    width: 100%;
+  }
+
+  .txtContent {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 32rpx 5% 160rpx;
+    color: #333;
+  }
+
+  .txtContent p {
+    color: #333;
+    text-indent: 56rpx;
+    font-size: 28rpx;
+    margin-top: 8rpx;
+  }
+
+  button:after{
+    border: none;
+  }

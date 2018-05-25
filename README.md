@@ -1,6 +1,6 @@
-# mpvue
+# wxapp
 
-> mpvue&wechat vue test
+> A Mpvue project
 
 ## Build Setup
 
