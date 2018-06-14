@@ -6,6 +6,6 @@ app.$mount()
 
 export default {
   config: {
-    navigationBarTitleText: '欢迎使用无感付'
+    navigationBarTitleText: '欢迎使用小K出行'
   }
 }

@@ -136,7 +136,7 @@
         </checkbox-group>
         <span>我已阅读并同意</span>
         <!-- </div> -->
-        <a href="../registerTxt/main" class="registerTxt">无感付用户协议</a>
+        <a href="../registerTxt/main" class="registerTxt">小K出行用户协议</a>
       </div>
     </div>
     <!-- 绑定按钮 -->
@@ -828,7 +828,7 @@ export default {
                 }
               }
             } else {
-              that.validate = '行驶证信息不完全'
+              that.validate = '车牌号信息不完全'
               setTimeout(function() {
                 that.validate = ''
               }, 2000);
@@ -968,8 +968,8 @@ export default {
 /*车牌颜色中的车牌号容器*/
 
 .carColorContainer {
-  width: 265.6rpx;
-  height: 90rpx;
+  width: 272rpx;
+  height: 80rpx;
   border-radius: 8rpx;
   border: 1px solid #1C63E1;
   background: #fff;
@@ -980,7 +980,7 @@ export default {
 
 .carColor-textContent {
   width: 256rpx;
-  height: 70.4rpx;
+  height: 64rpx;
   border-radius: 8rpx;
   background: #1C63E1;
   justify-content: center;
@@ -1008,8 +1008,8 @@ export default {
 .carColorType_2,
 .carColorType_3,
 .carColorType_4 {
-  width: 134.4rpx;
-  height: 54.4rpx;
+  width: 140rpx;
+  height: 60rpx;
   border-radius: 8rpx;
   justify-content: center;
   -ms-align-items: center;

@@ -36,7 +36,7 @@
           <!-- 人数标尺 -->
           <img :src="imgUrl.noFlag_number" class="numberIcon">
           <!-- 未绑定时下半部分 -->
-          <span class="user_noFlag_sign sign">绑定后您将享受无感付更高水平的服务</span>
+          <span class="user_noFlag_sign sign">绑定后您将享受小K出行更高水平的服务</span>
         </a>
       </div>
     </div>

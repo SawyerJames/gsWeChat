@@ -9,7 +9,7 @@
     <div class="swiper-box" bindchange="bindChange">
       <div :class="[selected ? 'show' : 'hidden']">
         <div>
-          <map id="map" :longitude="longitude" :latitude="latitude" scale="12" :controls="controls" bindcontroltap="controltap" :markers="markers" bindmarkertap="markertap" :polyline="polyline" bindregionchange="regionchange" show-location style="width: 100%; height: 1300rpx;"></map>
+          <map id="map" :longitude="longitude" :latitude="latitude" scale="12" :markers="markers" bindmarkertap="markertap" show-location style="width: 100%; height: 1300rpx;"></map>
         </div>
       </div>
       <div :class="[selected1?'show':'hidden']">我是呵呵</div>

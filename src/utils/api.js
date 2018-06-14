@@ -33,7 +33,7 @@ const API = {
   payDetail: 'details/details/paymentDetails',
   // 黑名单缴费明细
   blackUserPayment: 'parking/Payment_Records/blackUserPayment',
-  getBlackPayMsg: '',
+  getBlackPayMsg: 'index/mini/minipay',
   // 唤起微信支付
   postMoney: 'order/wxpay/repayment',
   // 意见反馈&投诉申请：

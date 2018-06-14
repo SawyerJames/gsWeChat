@@ -16,7 +16,7 @@
           <p class="textRed list_site textRight">未支付</p>
         </div>
       </div>
-      <div class="confirm" v-if="payList.list.length != 0" @click="oneKeyPayment">一键还款</div>
+      <div class="confirm" v-if="payTrue" @click="oneKeyPayment">一键还款</div>
     </div>
   </div>
 </template>
@@ -27,6 +27,8 @@ export default {
     return {
       // 代缴费列表
       payList: {},
+      // 支付按钮
+      payTrue: false
     }
   },
   onShow() {
@@ -39,6 +41,7 @@ export default {
       })
       .then(function(res) {
         that.payList = res.data.data;
+        that.payTrue = true;
       })
       .catch(function(err) {
         wx.showToast({
@@ -51,6 +54,7 @@ export default {
   methods: {
     // 一键还款
     oneKeyPayment() {
+      let that = this;
       // 获取支付相关数据：传递订单编号组
       this.$http.post(this.$api.getBlackPayMsg, {
           ordernum: this.payList.merge_order
@@ -60,6 +64,7 @@ export default {
           }
         })
         .then(function(res) {
+          console.log(res);
           // 发起小程序微信支付
           wx.requestPayment({
             'timeStamp': res.data.data.timeStamp,

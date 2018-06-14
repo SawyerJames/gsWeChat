@@ -39,7 +39,7 @@ export default {
         path: '../operating/main',
         setting_img: sz_syzn_09
       }, {
-        option: '无感付介绍',
+        option: '小K出行介绍',
         path: '../noninductive/main',
         setting_img: sz_wgzf_12
       }, {
@@ -84,6 +84,6 @@ export default {
 
 .sz_img {
   width: 16rpx;
-  height:26rpx;
+  height: 26rpx;
 }
 </style>

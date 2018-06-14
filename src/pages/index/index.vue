@@ -33,11 +33,6 @@
                 <span>当前积分0</span>
               </div>
             </div>
-            <!-- 业务标尺 -->
-            <div class="rankIconContent" @click="goBusiness">
-              <img :src="imgUrl.flag_rank" class="rankIcon">
-              <span>已开通业务</span>
-            </div>
             <!-- 已绑定其他信息 -->
             <div class="user_Flag_content flexCol">
               <span class="nick_name">{{userInfo.nickname}}</span>
@@ -61,7 +56,7 @@
             <span>{{registerNumber}}人已绑定</span>
           </div>
           <!-- 未绑定时下半部分 -->
-          <span class="user_noFlag_sign sign">绑定后您将享受无感付更高水平的服务</span>
+          <span class="user_noFlag_sign sign">绑定后您将享受小K出行更高水平的服务</span>
         </a>
       </div>
     </div>
@@ -88,11 +83,6 @@
         <span>智慧停车</span>
         <img :src="imgUrl.arrow" class="arrowIcon">
       </a>
-      <!-- <div @click="pay" class="tabBar_map_module flexRow" style="margin-bottom: 44rpx;">
-        <img :src="imgUrl.tab_4" class="tabIcon">
-        <span>创建订单</span>
-        <img :src="imgUrl.arrow" class="arrowIcon">
-      </div> -->
     </div>
     <!-- 动态二维码 -->
     <div v-if="showScan">
@@ -106,8 +96,8 @@
     <div class="mask" v-if="tutoriaWin && userFlag == 0 && userCheck == 0"></div>
     <div class="tutorialWin" v-if="tutoriaWin && userFlag == 0 && userCheck == 0">
       <div class="tutoriaContent borderBox">
-        <p class="tutorTitle">无感付介绍</p>
-        <p>感谢您使用无感付，绑定后即可在试点站享受无感支付。</p>
+        <p class="tutorTitle">小K出行介绍</p>
+        <p>感谢您使用小K出行，绑定后即可在试点站享受无感支付。</p>
         <p class="titleSign">——◆开通使用◆——</p>
         <p><span class="p_sign">第一步</span>、输入您的手机号，获取验证码并输入，点击下一步。</p>
         <p><span class="p_sign">第二步</span>、上传您的行驶证正反面，点击下一步。</p>
@@ -307,12 +297,6 @@ export default {
     this.blacklist();
   },
   methods: {
-    // 跳转已开通业务
-    goBusiness() {
-      wx.navigateTo({
-        url: '../business/main'
-      })
-    },
     // 使用指南
     tutoriaWinBtn() {
       this.tutoriaWin = false;
@@ -411,10 +395,13 @@ export default {
         })
         .then(function(res) {
           // 接口获取成功
-          if (res.data.data.blackUser.status == 1) {
-            that.blackPayment = true;
-          } else {
-            that.blackPayment = false;
+          // 如果用户绑定,则判断用户是否为黑名单
+          if (res.data.data.blackUser != null) {
+            if (res.data.data.blackUser.status == 1) {
+              that.blackPayment = true;
+            } else {
+              that.blackPayment = false;
+            }
           }
         });
     },
@@ -510,6 +497,7 @@ export default {
   justify-content: center;
   -ms-align-items: center;
   align-items: center;
+  position: relative;
 }
 
 .userInfoContent_Flag {
@@ -529,6 +517,7 @@ export default {
   justify-content: center;
   -ms-align-items: center;
   align-items: center;
+  z-index: 1;
 }
 
 .user_Flag_img_content {
@@ -615,7 +604,6 @@ export default {
   width: auto;
   height: auto;
   margin-bottom: 32rpx;
-  position: relative;
   justify-content: center;
   -ms-align-items: center;
   align-items: center;
@@ -657,30 +645,33 @@ export default {
   min-width: 200rpx;
   height: 50rpx;
   line-height: 50rpx;
-  top: -44rpx;
-  right: -104rpx;
-  position: absolute;
+  top: 114rpx;
+  right: 40rpx;
+  position: fixed;
   display: flex;
   justify-content: center;
   -ms-align-items: center;
   align-items: center;
   padding: 0 4rpx;
+  z-index: 1;
 }
 
 .numberIconContent span {
-  position: absolute;
+  min-width: 200rpx;
   z-index: 1;
   font-size: 24rpx;
   margin-top: -4rpx;
   display: block;
   color: #ea4e3d;
   font-weight: bold;
+  text-align: center;
 }
 
 .numberIcon {
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 1;
 }
 
 

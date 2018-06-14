@@ -3,15 +3,21 @@
     <errAlert :errShow="errShow" :errTxt="errTxt"></errAlert>
     <!-- 引导页样式 -->
     <div class="pageContentImg flexCol">
-      <img :src="imgUrl.logo" class="pageTopImg">
+      <div class="car">
+        <img :src="imgUrl.carBody" class="carBody">
+        <img :src="imgUrl.carWheel" class="carWheel_left">
+        <img :src="imgUrl.carWheel" class="carWheel_right">
+      </div>
       <img :src="imgUrl.title" class="pageTopTitle">
       <img :src="imgUrl.sign" class="pageTopSign">
     </div>
     <img :src="imgUrl.bottomBg" class="pageBottomImg">
+    <p class="loadingSign">正在加载中...</p>
   </div>
 </template>
 <script>
-import logo from '@/assets/bootPage/logo.png'
+import carBody from '@/assets/bootPage/carBody.png'
+import carWheel from '@/assets/bootPage/carWheel.png'
 import title from '@/assets/bootPage/title.png'
 import sign from '@/assets/bootPage/sign.png'
 import bottomBg from '@/assets/bootPage/bottomBg.png'
@@ -21,7 +27,8 @@ export default {
   data() {
     return {
       imgUrl: {
-        logo,
+        carBody,
+        carWheel,
         title,
         sign,
         bottomBg
@@ -53,7 +60,9 @@ export default {
                   method: 'POST',
                   data: {
                     code: res.code,
-                    userInfo: ress.userInfo
+                    userInfo: ress.userInfo,
+                    encryptedData: ress.encryptedData,
+                    iv: ress.iv
                   },
                   dataType: 'json',
                   success: function(resData) {
@@ -151,14 +160,53 @@ export default {
   align-items: center;
 }
 
-.pageTopImg {
+
+/*车*/
+
+.car {
   width: 200rpx;
-  height: 128rpx;
+  height: auto;
   margin-bottom: 96rpx;
+  position: relative;
 }
 
+.carBody {
+  width: 100%;
+  height: 108rpx;
+}
+
+.carWheel_left,
+.carWheel_right {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  z-index: 1;
+  bottom: -10rpx;
+  animation: carWheel 2s linear infinite;
+}
+
+.carWheel_left {
+  left: 22rpx;
+}
+
+.carWheel_right {
+  right: 16rpx;
+}
+
+@keyframes carWheel {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+
+/*主体*/
+
 .pageTopTitle {
-  width: 220rpx;
+  width: 282rpx;
   height: 64rpx;
   margin-bottom: 32rpx;
 }
@@ -166,5 +214,15 @@ export default {
 .pageTopSign {
   width: 540rpx;
   height: 48rpx;
+}
+
+.loadingSign {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #999;
+  position: fixed;
+  bottom: 120rpx;
+  width: 100%;
+  text-align: center;
 }
 </style>

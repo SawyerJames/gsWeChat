@@ -1,8 +1,6 @@
 <template>
   <div class="feedback">
     <errAlert :errShow="errShow" :errTxt="errTxt"></errAlert>
-    <!-- alert与校验组件 -->
-    <alert :alert="alert" :title="title" :text="text"></alert>
     <h1 class="validate" v-if="validate">{{validate}}</h1>
     <!-- 主容器 -->
     <div class="feedbackContent borderBox">
@@ -41,11 +39,7 @@ export default {
       // 投诉内容
       textareaVal: "",
       // 投诉照片
-      fileArr: "",
-      // alert弹窗
-      alert: false,
-      title: '提交成功',
-      text: '您已提交成功<br/>我们会考虑您的建议',
+      fileArr: ""
     }
   },
   onLoad() {
@@ -91,19 +85,22 @@ export default {
               'content': this.textareaVal
             },
             success: function(res) {
-              // 显示弹窗
-              that.alert = true;
-              // 隐藏弹窗并1.5s后跳转
-              var hideAlert = setTimeout(function() {
-                that.alert = false;
-                // 重置数据
-                that.fileArr = '';
-                that.imgUrl.add_1 = add_1;
-                // 退回上一页
-                wx.redirectTo({
-                  url: '../center/main'
-                })
-              }, 1500);
+              wx.showToast({
+                title: '提交成功',
+                icon: 'success',
+                duration: 1500,
+                success: function() {
+                  setTimeout(function() {
+                    // 重置数据
+                    that.fileArr = '';
+                    that.imgUrl.add_1 = add_1;
+                    // 退回上一页
+                    wx.reLaunch({
+                      url: '../settingIndex/main'
+                    })
+                  }, 1500);
+                }
+              });
             }
           });
         } else {
@@ -115,19 +112,22 @@ export default {
               }
             })
             .then(function() {
-              // 显示弹窗
-              that.alert = true;
-              // 隐藏弹窗并1.5s后跳转
-              var hideAlert = setTimeout(function() {
-                that.alert = false;
-                // 重置数据
-                that.fileArr = '';
-                that.imgUrl.add_1 = add_1;
-                // 退回上一页
-                wx.redirectTo({
-                  url: '../center/main'
-                })
-              }, 1500);
+              wx.showToast({
+                title: '提交成功',
+                icon: 'success',
+                duration: 1500,
+                success: function() {
+                  setTimeout(function() {
+                    // 重置数据
+                    that.fileArr = '';
+                    that.imgUrl.add_1 = add_1;
+                    // 退回上一页
+                    wx.reLaunch({
+                      url: '../settingIndex/main'
+                    })
+                  }, 1500);
+                }
+              });
             });
         }
       }
